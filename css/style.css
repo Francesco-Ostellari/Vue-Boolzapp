@@ -101,7 +101,7 @@ body {
 
 .container .col-left .conversazioni {
   height: calc(100% - 70px - 45px - 80px);
-  width: 99%;
+  width: 100%;
   border-right: lightgrey;
   background-color: white;
   overflow-y: scroll;
@@ -177,9 +177,8 @@ body {
 }
 
 .col-right .main .container-main {
-  height: calc(100% - 70px - 70px);
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  padding: 3em 5em;
   flex-direction: column;
   overflow-y: scroll;
 }
