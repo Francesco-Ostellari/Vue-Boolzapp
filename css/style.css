@@ -104,12 +104,32 @@ body {
 .container .col-left .conversazioni .chat {
   height: 80px;
   width: 100%;
-  padding: 5px;
+  padding: 10px 5px;
+  border-bottom: 1px solid lightgrey;
 }
 
 .container .col-left .conversazioni .chat img {
   height: 60px;
+  border-radius: 50%;
 }
 
+.container .col-left .conversazioni .chat .container-text {
+  flex-direction: column;
+  width: 95%;
+}
 
+.container .col-left .conversazioni .chat .container-text .text {
+  margin-left: 10px;
+  justify-content: space-between;
+  width: 95%;
+}
 
+.container .col-left .conversazioni .chat .container-text .message {
+  color: #B6B9BB;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+
+.container .col-left .conversazioni .chat .container-text .text .data {
+  color: #B6B9BB;
+}
