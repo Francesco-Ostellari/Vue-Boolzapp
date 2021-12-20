@@ -4,29 +4,112 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-  position: relative;
+.flex {
+  display: flex;
 }
 
-.background-verde {
-  background-color: #009687;
-  height: 20%;
+.icons {
+  color: #B1B1B1;
+  padding-right: 10px;
+  font-size: 1.2em;
+}
+
+body {
+  height: 100vh;
+  background-image: linear-gradient(#009688 0px, #009688 20vh, #D9DBD5 20vh, #D9DBD5 100%);
+  display: flex;
   width: 100%;
 }
 
-.background-grigio {
-  background-color: #D9DBD5;
-  height: 80%;
+.container {
+  height: 1200px;
+  margin: auto;
+  width: 1300px;
+  background-color: white;
 }
 
-.container {
-  display: flex;
-  height: 800px;
-  width: 800px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.container .col-left {
+  width: 40%;
+  height: 100%;
+  border-right: 1px solid lightgrey;
+  background-color: #FAFAFA;
 }
+
+.container .col-right {
+  width: 60%;
+  height: 100%;
+}
+
+.container .col-left .header-top-left {
+  height: 70px;
+  padding: 5px;
+  background-color: #EAEAEA;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .col-left .header-top-left img {
+  height: 60px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.container .col-left .container-notifiche {
+  background-color: #8EDAFC;
+  height: 80px;
+  align-items: center;
+  padding-left: 20px;
+}
+.container .col-left .container-notifiche i {
+  color: #8EDAFC;
+  background-color: white;
+  border-radius: 50%;
+  padding: 17px 15px;
+  font-size: 1.2em;
+}
+
+.container .col-left .container-notifiche .text {
+  margin-left: 10px;
+}
+
+.container .col-left .container-notifiche .text a {
+  color:#6B7376;
+}
+
+.container .col-left .ricerca {
+  background-color: white;
+  margin: 5px;
+  padding: 7px 20px;
+  border: 1px solid #F5F5F5;
+}
+
+.container .col-left .ricerca input {
+  border: none;
+  width: 80%;
+  color: transparent;
+  margin-left: 20px;
+}
+
+.container .col-left .ricerca i {
+  font-size: 1em;
+}
+
+.container .col-left .conversazioni {
+  height: 84%;
+  width: 99%;
+  border-right: lightgrey;
+  background-color: white;
+}
+
+.container .col-left .conversazioni .chat {
+  height: 80px;
+  width: 100%;
+  padding: 5px;
+}
+
+.container .col-left .conversazioni .chat img {
+  height: 60px;
+}
+
+
+
