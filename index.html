@@ -13,7 +13,7 @@
   <title>Vue Boolzapp</title>
 </head>
 <body>
-  <div class="container flex">
+  <div id="app" class="container flex">
     <div class="col-left">
       <div class="header-top-left flex">
         <div class="container-img">
@@ -38,51 +38,15 @@
         <input type="text" placeholder="Cerca o inizia una nuova chat">
       </div>
       <div class="conversazioni">
-        <div class="chat flex">
-          <img src="img/avatar_1.jpg" alt="">
+        <div class="chat flex" v-for="(contact, index) in contacts">
+          <img :src="`img/avatar${contact.avatar}.jpg`" alt="">
           <div class="container-text flex">
             <div class="text flex">
-              <h3>Michele</h3>
-              <span class="data"> 20 12 2021 10:22:21</span>
+              <h3>{{contact.name}}</h3>
+              <span class="data"> {{contact.messages[2].date}} </span>
             </div>
             <div class="message">
-              <p>ok...</p>
-            </div>
-          </div>
-        </div>
-        <div class="chat flex">
-          <img src="img/avatar_2.jpg" alt="">
-          <div class="container-text flex">
-            <div class="text flex">
-              <h3>Fabio</h3>
-              <span class="data"> 20/03/2020 16:35:00</span>
-            </div>
-            <div class="message">
-              <p>Mi piacerebbe ma devo andare a...</p>
-            </div>
-          </div>
-        </div>
-        <div class="chat flex">
-          <img src="img/avatar_3.jpg" alt="">
-          <div class="container-text flex">
-            <div class="text flex">
-              <h3>Samuele</h3>
-              <span class="data"> 28/03/2020 16:15:22</span>
-            </div>
-            <div class="message">
-              <p>Ah scusa!...</p>
-            </div>
-          </div>
-        </div>
-        <div class="chat flex">
-          <img src="img/avatar_4.jpg" alt="">
-          <div class="container-text flex">
-            <div class="text flex">
-              <h3>Luisa</h3>
-              <span class="data"> 10/01/2020 15:50:00</span>
-            </div>
-            <div class="message">
-              <p>Si, ma preferirei andare al ci...</p>
+              <p>{{contact.messages[2].text}}</p>
             </div>
           </div>
         </div>
