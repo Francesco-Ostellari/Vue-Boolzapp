@@ -16,6 +16,7 @@ body {
   color: #B1B1B1;
   padding-right: 10px;
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 body {
@@ -51,6 +52,10 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.container .col-left .header-top-left .container-img{
+  cursor: pointer;
+} 
 
 .container .col-left .header-top-left img {
   height: 60px;
@@ -112,6 +117,7 @@ body {
   width: 100%;
   padding: 10px 5px;
   border-bottom: 1px solid lightgrey;
+  cursor: pointer;
 }
 
 .container .col-left .conversazioni .chat img {
@@ -157,6 +163,7 @@ body {
 
 .container .col-right .header-top-right .container-img {
   align-items: center;
+  cursor: pointer;
 }
 
 .container .col-right .header-top-right .container-img .text {
