@@ -2,11 +2,15 @@
 // Replica della grafica con la possibilità di avere messaggi scritti dall’utente(verdi) e dall’interlocutore(bianco) assegnando due classi CSS diverse
 // Visualizzazione dinamica della lista contatti: tramite la direttiva v -for, visualizzare nome e immagine di ogni contatto
 
+// Milestone 2
+// Visualizzazione dinamica dei messaggi: tramite la direttiva v -for, visualizzare tutti i messaggi relativi al contatto attivo all’interno del pannello della conversazione
+// Click sul contatto mostra la conversazione del contatto cliccato
 
 const app = new Vue(
   {
     el: '#app',
     data: {
+      counter: 0,
       contacts: [
         {
           name: "Michele",
@@ -88,15 +92,32 @@ const app = new Vue(
               date: "10/01/2020 15:50:00",
               text: "Si, ma preferirei andare al cinema",
               status: "received",
-            },
-            {
-              date: "10/01/2020 15:50:00",
-              text: "Si, ma preferirei andare al cinema",
-              status: "received",
             }
-          ],
-        },
+          ]
+        }
       ]
+    },
+    methods: {
+      add: function (index) {
+        this.counter = index;
+      },
+      getDate: function (index) {
+        //recupero la data dell'ultimo messaggio
+        let lastMessage = this.contacts[index].messages.length - 1;
+        let messageDate = this.contacts[index].messages[lastMessage].date;
+        return messageDate;
+      },
+      getMessage: function (index) {
+        //recupero il testo dell'ultimo messaggio
+        let lastMessage = this.contacts[index].messages.length - 1;
+        let messageText = this.contacts[index].messages[lastMessage].text;
+
+        //visualizzo in pagina i puntini se il messaggio è lungo
+        if (messageText.length > 20) {
+          messageText = messageText + ' ...';
+        }
+        return messageText;
+      }
     }
   }
 );
