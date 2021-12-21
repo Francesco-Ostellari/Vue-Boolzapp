@@ -184,7 +184,7 @@ body {
 }
 
 .col-right .main .container-main .message {
-  width: 300px;
+  width: 350px;
   height: 60px;
   background-color: white;
   border-radius: 10px;
@@ -207,7 +207,7 @@ body {
 }
 
 .col-right .main .container-main .sent {
-  width: 300px;
+  width: 350px;
   height: 60px;
   background-color: #D5F9BA;
   border-radius: 10px;
