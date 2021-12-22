@@ -190,7 +190,7 @@ body {
   overflow-y: scroll;
 }
 
-.col-right .main .container-main .message {
+.col-right .main .container-main .received {
   width: 350px;
   height: 60px;
   background-color: white;
