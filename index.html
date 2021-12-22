@@ -69,7 +69,7 @@
       </div>
       <div class="main flex">
         <div class="container-main flex">
-          <div v-for="(message, index) in contacts[counter].messages" :class="(message.status == 'sent') ? 'sent' : ''" class="message flex">
+          <div v-for="(message, index) in contacts[counter].messages" :class="(message.status == 'sent') ? 'sent' : ''" class="message received flex">
             <p class="text-message">
               {{message.text}}
             </p>
@@ -81,7 +81,7 @@
       </div>
       <div class="bottom-bar flex">
         <i class="far fa-smile icons"></i>
-        <input type="text" placeholder="Scrivi un messaggio">
+        <input @keyup.enter="addMessage" v-model="messageNew" type="text" placeholder="Scrivi un messaggio">
         <i class="fas fa-microphone icons"></i>
       </div>
     </div>
