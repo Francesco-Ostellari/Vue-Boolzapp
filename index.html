@@ -81,6 +81,11 @@
             <p class="date-message">
               {{message.date}}
             </p>
+            <i class="fa fa-chevron-down option_arrow" @click="showOptions(index)"></i>
+            <div class="option-panel" v-if="menu.show == true && menu.index == index">
+              <div class="info-message">Info messaggio</div>
+              <div class="delete-message" @click="removeMessage(index)">Cancella messaggio</div>
+            </div>
           </div>
         </div>
       </div>
