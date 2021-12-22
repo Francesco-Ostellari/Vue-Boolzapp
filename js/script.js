@@ -10,6 +10,9 @@
 // Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
 // Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 
+// Milestone 4
+// Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite(es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
+
 
 const app = new Vue(
   {
@@ -17,6 +20,7 @@ const app = new Vue(
     data: {
       counter: 0,
       messageNew: '',
+      ricercaChat: '',
       contacts: [
         {
           name: "Michele",
@@ -124,19 +128,30 @@ const app = new Vue(
         return messageText;
       },
       addMessage: function () {
-        let object =  this.contacts[this.counter].messages 
+        let object =  this.contacts[this.counter].messages ;
+        dayjs.extend(window.dayjs_plugin_customParseFormat);
+        let data = dayjs().format("D/M/YYYY HH:mm:ss"); 
         object.push ({
           text: this.messageNew,
-          date: "10/01/2020 15:30:55",
+          date: data,
           status: "sent"
         });
         setTimeout(() => {
           object.push({
             text: "Ok",
-            date: "10/01/2020 15:30:55",
+            date: data,
             status: "received"
           })
         }, 1000);
+      },
+      ricerca: function () {
+        this.contacts.forEach((contact) => {
+          if (contact.name.toLowerCase().includes(this.ricercaChat.toLowerCase())) {
+            contact.visible = true;
+          } else {
+            contact.visible = false;
+          }
+        });
       }
     }
   }

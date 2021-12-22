@@ -10,6 +10,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/utc.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.20/plugin/customParseFormat.js"></script>
+
   <title>Vue Boolzapp</title>
 </head>
 <body>
@@ -35,10 +40,10 @@
       </div>
       <div class="ricerca">
         <i class="fas fa-search icons"></i>
-        <input type="text" placeholder="Cerca o inizia una nuova chat">
+        <input v-model="ricercaChat" @keyup="ricerca" type="text" placeholder="Cerca o inizia una nuova chat">
       </div>
       <div class="conversazioni">
-        <div  @click="add(index)" :class="(index == counter) ? 'selected' : '' " class="chat flex" v-for="(contact, index) in contacts">
+        <div @click="add(index)" class="chat flex" v-for="(contact, index) in contacts" :class="(index == counter) ? 'selected' : '' " v-if="contact.visible">
           <img :src="`img/avatar${contact.avatar}.jpg`" alt="">
           <div class="container-text flex">
             <div class="text flex">
