@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/utc.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.20/plugin/customParseFormat.js"></script>
+
+  <title>Vue Boolzapp</title>
+</head>
+<body>
+  <div id="app" class="container flex">
+    <!-- colonna sinistra -->
+    <div class="col-left">
+      <!-- header sinistro -->
+      <div class="header-top-left flex">
+        <div class="container-img">
+          <img src="img/avatar_io.jpg" alt="">
+          <span class="user">Nome Utente</span>
+        </div>
+        <div class="container-icons">
+          <i class="fas fa-circle-notch icons"></i>
+          <i class="fas fa-comment-alt icons"></i>
+          <i class="fas fa-ellipsis-v icons"></i>
+        </div>
+      </div>
+      <!-- /header sinistro -->
+
+      <!-- container notifiche -->
+      <div class="container-notifiche flex">
+        <i class="fas fa-bell-slash"></i>
+        <!-- testo -->
+        <div class="text">
+          <h3>Ricevi notifiche di nuovi messaggi</h3>
+          <p><a href="#">Attiva notifiche desktop</a></p>
+        </div>
+        <!-- /testo -->
+      </div>
+      <!-- /container notifiche -->
+
+      <!-- container ricerca chat -->
+      <div class="ricerca">
+        <i class="fas fa-search icons"></i>
+        <input v-model="ricercaChat" @keyup="ricerca" type="text" placeholder="Cerca o inizia una nuova chat">
+      </div>
+      <!-- /container ricerca chat -->
+      
+      <!-- container conversazioni -->
+      <div class="conversazioni">
+        <div @click="add(index)" class="chat flex" v-for="(contact, index) in contacts" :class="(index == counter) ? 'selected' : '' " v-if="contact.visible">
+          <img :src="`img/avatar${contact.avatar}.jpg`" alt="">
+          <!-- testo -->
+          <div class="container-text flex">
+            <!-- nome contatto e data messaggio -->
+            <div class="text flex">
+              <h3>{{contact.name}}</h3>
+              <span class="data"> {{getDate(index)}} </span>
+            </div>
+            <!-- /nome contatto e data messaggio -->
+
+            <!-- contenuto del messaggio -->
+            <div class="message">
+              <p>{{getMessage(index)}}</p>
+            </div>
+            <!-- /contenuto del messaggio -->
+          </div>
+          <!-- /testo -->
+        </div>
+      </div>
+      <!-- /container conversazioni -->
+    </div>
+    <!-- /colonna sinistra -->
+
+    <!-- colonna destra -->
+    <div class="col-right">
+      <!-- header destro -->
+      <div class="header-top-right flex">
+        <!-- container immagine -->
+        <div class="container-img flex">
+          <img :src="`img/avatar${contacts[counter].avatar}.jpg`" alt="">
+          <!-- nome contatto e ultimo accesso -->
+          <div class="text">
+            <span class="user">{{contacts[counter].name}}</span>
+            <p>Ultimo accesso oggi alle {{getDate(counter)}}</p>
+          </div>
+          <!-- /nome contatto e ultimo accesso -->
+        </div>
+        <!-- /container immagine -->
+
+        <!-- container icone -->
+        <div class="container-icons">
+          <i class="fas fa-search icons"></i>
+          <i class="fas fa-paperclip icons"></i>
+          <i class="fas fa-ellipsis-v icons"></i>
+        </div>
+        <!-- /container icone -->
+      </div>
+      <!-- /header destro -->
+
+      <!-- main -->
+      <div class="main flex">
+        <div class="container-main flex">
+          <div v-for="(message, index) in contacts[counter].messages" :class="(message.status == 'sent') ? 'sent' : ''" class="message received flex">
+            <!-- testo del messaggio -->
+            <p class="text-message">
+              {{message.text}}
+            </p>
+            <!-- testo del messaggio -->
+
+            <!-- data del messaggio -->
+            <p class="date-message">
+              {{message.date}}
+            </p>
+            <!-- /data del messaggio -->
+            <i class="fa fa-chevron-down option_arrow" @click="showOptions(index)"></i>
+            <!-- pannello opzioni -->
+            <div class="option-panel" v-if="menu.show == true && menu.index == index">
+              <div class="info-message">Info messaggio</div>
+              <div class="delete-message" @click="removeMessage(index)">Cancella messaggio</div>
+            </div>
+            <!-- /pannello opzioni -->
+          </div>
+        </div>
+      </div>
+      <!-- barra inferiore -->
+      <div class="bottom-bar flex">
+        <i class="far fa-smile icons"></i>
+        <input @keyup.enter="addMessage" v-model="messageNew" type="text" placeholder="Scrivi un messaggio">
+        <i class="fas fa-microphone icons"></i>
+      </div>
+      <!-- /barra inferiore -->
+    </div>
+    <!-- /main -->
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
