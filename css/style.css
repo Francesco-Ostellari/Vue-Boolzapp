@@ -1,3 +1,4 @@
+/* common */
 * {
   padding: 0;
   margin: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .flex {
@@ -25,26 +26,34 @@ body {
   display: flex;
   width: 100%;
 }
+/* /common */
 
+/* layout contenitore generale */
 .container {
   height: 95%;
   width: 80%;
   margin: auto;
   min-width: 950px;
 }
+/* /layout contenitore generale */
 
+/* layout colonna sinistra */
 .container .col-left {
   width: 40%;
   height: 100%;
   border-right: 1px solid lightgrey;
   background-color: #FAFAFA;
 }
+/* /layout colonna sinistra */
 
+/* layout colonna destra */
 .container .col-right {
   width: 60%;
   height: 100%;
 }
+/* /layout colonna destra */
 
+/* layout header sinistro */
 .container .col-left .header-top-left {
   height: 70px;
   padding: 5px;
@@ -52,24 +61,32 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+/* /layout header sinistro */
 
+/* layout contenitore immagine */
 .container .col-left .header-top-left .container-img{
   cursor: pointer;
 } 
+/* /layout contenitore immagini */
 
+/* layout immagine profilo header sinistro */
 .container .col-left .header-top-left img {
   height: 60px;
   border-radius: 50%;
   vertical-align: middle;
 }
+/* /layout immagine profilo header sinistro */
 
+/* layout contenitore notifiche */
 .container .col-left .container-notifiche {
   background-color: #8EDAFC;
   height: 80px;
   align-items: center;
   padding-left: 20px;
 }
+/* /layout contenitore notifiche */
 
+/* layout icone contenitore notifiche */
 .container .col-left .container-notifiche i {
   color: #8EDAFC;
   background-color: white;
@@ -77,32 +94,44 @@ body {
   padding: 17px 15px;
   font-size: 1.2em;
 }
+/* /layout icone contenitore notifiche */
 
+/* layout testo contenitore notifiche */
 .container .col-left .container-notifiche .text {
   margin-left: 10px;
 }
+/* /layout testo contenitore notifiche */
 
+/* layout link contenitore notifiche */
 .container .col-left .container-notifiche .text a {
   color:#6B7376;
 }
+/* /layout link contenitore notifiche */
 
+/* layout div ricerca chat */
 .container .col-left .ricerca {
   background-color: white;
   margin: 5px;
   padding: 7px 20px;
   border: 1px solid #F5F5F5;
 }
+/* /layout div ricerca chat */
 
+/* layout input ricerca chat */
 .container .col-left .ricerca input {
   border: none;
   width: 80%;
   margin-left: 20px;
 }
+/* /layout input ricerca chat */
 
+/* layout icone ricerca chat */
 .container .col-left .ricerca i {
   font-size: 1em;
 }
+/* /layout icone ricerca chat */
 
+/* layout div conversazioni */
 .container .col-left .conversazioni {
   height: calc(100% - 70px - 45px - 80px);
   width: 100%;
@@ -110,7 +139,9 @@ body {
   background-color: white;
   overflow-y: scroll;
 }
+/* /layout div conversazioni */
 
+/* layout singola chat */
 .container .col-left .conversazioni .chat {
   height: 80px;
   width: 100%;
@@ -118,33 +149,51 @@ body {
   border-bottom: 1px solid lightgrey;
   cursor: pointer;
 }
+/* /layout singola chat */
 
+/* layout immagine singola chat */
 .container .col-left .conversazioni .chat img {
   height: 60px;
   border-radius: 50%;
 }
+/* /layout immagine singola chat */
 
+/* layout contenitore testo */
 .container .col-left .conversazioni .chat .container-text {
   flex-direction: column;
   width: 95%;
 }
+/* /layout contenitore testo */
 
+/* layout testo */
 .container .col-left .conversazioni .chat .container-text .text {
   margin-left: 10px;
   justify-content: space-between;
   width: 95%;
 }
+/* /layout testo */
 
+/* layout messaggi */
 .container .col-left .conversazioni .chat .container-text .message {
   color: #B6B9BB;
   margin-top: 2px;
   margin-left: 10px;
 }
+/* /layout messaggi */
 
+/* layout data */
 .container .col-left .conversazioni .chat .container-text .text .data {
   color: #B6B9BB;
 }
+/* /layout data */
 
+/* layout chat selezionata header sinistro */
+.chat.selected {
+  background-color: rgba(180, 180, 180,0.5);
+}
+/* /layout chat selezionata header sinistro */
+
+/* layout header destro */
 .container .col-right .header-top-right {
   height: 70px;
   padding: 5px;
@@ -153,18 +202,24 @@ body {
   align-items: center;
   width: 100%;
 }
+/* /layout header destro */
 
+/* layout immagine profilo header destro */
 .container .col-right .header-top-right img {
   height: 60px;
   border-radius: 50%;
   vertical-align: middle;
 }
+/* /layout immagine profilo header destro */
 
+/* layout contenitore immagine e testo header destro */
 .container .col-right .header-top-right .container-img {
   align-items: center;
   cursor: pointer;
 }
+/* /layout contenitore immagine e testo header destro */
 
+/* layout testo header destro */
 .container .col-right .header-top-right .container-img .text {
   margin-left: 10px;
 } 
@@ -172,7 +227,9 @@ body {
 .container .col-right .header-top-right .container-img .text p {
   color: #6B7376;
 }
+/* /layout testo header destro */
 
+/* layout main */
 .col-right .main {
   background-image: url('../img/mine.jpg');
   height: calc(100% - 70px - 70px);
@@ -181,7 +238,9 @@ body {
   margin: auto;
   flex-direction: column;
 }
+/* /layout main */
 
+/* layout container main */
 .col-right .main .container-main {
   height: 100%;
   width: 100%;
@@ -189,7 +248,9 @@ body {
   flex-direction: column;
   overflow-y: scroll;
 }
+/* /layout container main */
 
+/* layout messaggi ricevuti */
 .col-right .main .container-main .received {
   width: 350px;
   height: 60px;
@@ -201,19 +262,25 @@ body {
   margin: 10px 0;
   position: relative;
 }
+/* /layout messsaggi ricevuti */
 
+/* layout testo messaggio */
 .col-right .main .container-main .message .text-message {
   align-self: flex-start;
   margin-top: 15px;
 }
+/* /layout testo messaggio */
 
+/* layout data messaggio */
 .col-right .main .container-main .message .date-message {
   align-self: flex-end;
   font-size: 0.8em;
   color: #B6B9BB;
   margin-top: 5px;
 }
+/* /layout data messaggio */
 
+/* layout messaggi inviati */
 .col-right .main .container-main .sent {
   width: 350px;
   height: 60px;
@@ -226,7 +293,9 @@ body {
   margin: 10px 0;
   position: relative;
 }
+/* /layout messaggi inviati */
 
+/* layout barra inferiore */
 .col-right .bottom-bar {
   height: 70px;
   width: 100%;
@@ -235,7 +304,9 @@ body {
   justify-content: space-around;
   padding: 0 15px;
 }
+/* /layout barra inferiore */
 
+/* layout input barre inferiore */
 .col-right .bottom-bar input {
   width: 85%;
   height: 70%;
@@ -243,16 +314,16 @@ body {
   padding: 0 10px;
   border-radius: 5px;
 }
+/* /layout input barra inferiore */
 
+/* layout icone barra inferiore */
 .col-right .bottom-bar i {
   padding: 0;
   font-size: 1.5em;
 }
+/* /layout icone barra inferiore */
 
-.chat.selected {
-  background-color: rgba(180, 180, 180,0.5);
-}
-
+/* layout freccia opzioni */
 .option_arrow {
   display: none;
   color: #B6B9BB;
@@ -265,7 +336,9 @@ body {
 .col-right .main .container-main .received:hover .option_arrow {
   display: block;
 }
+/* /layout freccia opzioni */
 
+/* layout pannello opzioni */
 .col-right .main .container-main .received .option-panel {
   position: absolute;
   right: 0;
@@ -276,7 +349,9 @@ body {
   box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.75);
   z-index: 999;
 }
+/* /layout pannello opzioni */
 
+/* layout info e cancellazione messaggio */
 .col-right .main .container-main .received .option-panel .info-message, 
 .delete-message {
   cursor: pointer;
@@ -286,3 +361,4 @@ body {
   font-size: 14px;
   padding-left: 1.2em;
 }
+/* /layout infoe  cancellaizone messaggio */

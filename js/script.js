@@ -114,15 +114,22 @@ const app = new Vue(
       ]
     },
     methods: {
+      // funzione per selezionare chat
       add: function (index) {
         this.counter = index;
       },
+      // /funzione per selezionare chat
+
+      // funzione data messaggio
       getDate: function (index) {
         //recupero la data dell'ultimo messaggio
         let lastMessage = this.contacts[index].messages.length - 1;
         let messageDate = this.contacts[index].messages[lastMessage].date;
         return messageDate;
       },
+      // /fuznione data messaggio
+
+      // funzione testo messaggio
       getMessage: function (index) {
         //recupero il testo dell'ultimo messaggio
         let lastMessage = this.contacts[index].messages.length - 1;
@@ -133,6 +140,9 @@ const app = new Vue(
         }
         return messageText;
       },
+      // /funzione testo messaggio
+
+      // funzione per scrivere, aggiungere un messaggio e riceverne risposta
       addMessage: function () {
         let object =  this.contacts[this.counter].messages ;
         dayjs.extend(window.dayjs_plugin_customParseFormat);
@@ -150,6 +160,9 @@ const app = new Vue(
           })
         }, 1000);
       },
+      // /funzione per scrivere, aggiungere un messaggio e riceverne risposta
+      
+      // funzione ricerca chat
       ricerca: function () {
         this.contacts.forEach((contact) => {
           if (contact.name.toLowerCase().includes(this.ricercaChat.toLowerCase())) {
@@ -159,6 +172,9 @@ const app = new Vue(
           }
         });
       },
+      // /funzione ricerca chat
+
+      // funzione per visualizzare e interagire col pannello opzioni
       showOptions: function (index) {
         if (this.menu.index !== index && this.menu.index !== false) {
           this.menu.show = false;
@@ -167,12 +183,16 @@ const app = new Vue(
         this.menu.show = !this.menu.show;
         this.menu.index = index;
       },
+      // /funzione per visualizzare e interagire col pannello opzioni
+      
+      // funzione per rimuovere un messaggio
       removeMessage: function (index) {
         let object = this.contacts[this.counter].messages;
         object.splice(index, 1);
         this.menu.show = false;
         this.menu.index = false;
       }
+      // /funzione per rimuovere un messaggio
     }
   }
 );
