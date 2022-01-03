@@ -165,6 +165,7 @@ const app = new Vue(
             })
           }, 1000);
         }
+        this.messageNew = '';
       },
       // /funzione per scrivere, aggiungere un messaggio e riceverne risposta
       
