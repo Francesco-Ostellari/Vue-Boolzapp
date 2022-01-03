@@ -146,7 +146,7 @@ const app = new Vue(
       addMessage: function () {
         let object =  this.contacts[this.counter].messages ;
         dayjs.extend(window.dayjs_plugin_customParseFormat);
-        let data = dayjs().format("D/M/YYYY HH:mm:ss"); 
+        let data = dayjs().format("DD/MM/YYYY HH:mm:ss"); 
         if (this.messageNew.trim() != '') {
           object.push ({
             text: this.messageNew,
