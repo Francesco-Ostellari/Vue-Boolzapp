@@ -136,7 +136,7 @@
         <i class="far fa-smile icons"></i>
         <input @keyup.enter="addMessage" v-model="messageNew" type="text" placeholder="Scrivi un messaggio">
         <i v-if="messageNew.trim() == ''" class="fas fa-microphone icons"></i>
-        <i v-else @click="addMessage(messageNew)" class="fas fa-paper-plane icons"></i>
+        <i v-else @click="addMessage" class="fas fa-paper-plane icons"></i>
       </div>
       <!-- /barra inferiore -->
     </div>
