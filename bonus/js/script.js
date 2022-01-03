@@ -147,18 +147,20 @@ const app = new Vue(
         let object =  this.contacts[this.counter].messages ;
         dayjs.extend(window.dayjs_plugin_customParseFormat);
         let data = dayjs().format("D/M/YYYY HH:mm:ss"); 
-        object.push ({
-          text: this.messageNew,
-          date: data,
-          status: "sent"
-        });
-        setTimeout(() => {
-          object.push({
-            text: "Ok",
+        if (this.messageNew.trim() != '') {
+          object.push ({
+            text: this.messageNew,
             date: data,
-            status: "received"
-          })
-        }, 1000);
+            status: "sent"
+          });          
+          setTimeout(() => {
+            object.push({
+              text: "Ok",
+              date: data,
+              status: "received"
+            })
+          }, 1000);
+        }
       },
       // /funzione per scrivere, aggiungere un messaggio e riceverne risposta
       
