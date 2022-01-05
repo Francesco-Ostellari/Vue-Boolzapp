@@ -19,6 +19,7 @@
 // BONUS
 // evitare che l'utente possa inviare un messaggio vuoto o composto solamente da spazi
 // A) cambiare icona in basso a destra(a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano.Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. B) inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
+// predisporre una lista di frasi e/o citazioni da utilizzare al posto della risposta "ok:" quando il pc risponde, anziché scrivere "ok", scegliere una frase random dalla lista e utilizzarla come testo del messaggio di risposta del pc
 
 const app = new Vue(
   {
@@ -114,9 +115,27 @@ const app = new Vue(
               status: "received",
             }
           ]
-        }
-      ]
+        }        
+      ],
+      answers: [
+            'Secondo me si',
+            'Sarà sicuramente così',
+            'Non ne sono certo',
+            'Potrebbe essere',
+            'Perché no?',
+            'Non posso',
+            'Sto lavorando',
+            'Non saprei...',
+            'Si!',
+            'Forse domani...',
+            'Non è detto',
+            'Speriamo bene!',
+            'Confermo!',
+            'Si potrebbe fare!',
+            'Ci vediamo domani allora!'
+          ]
     },
+    
     methods: {
       // funzione per selezionare chat
       add: function (index) {
@@ -146,6 +165,14 @@ const app = new Vue(
       },
       // /funzione testo messaggio
 
+      // funzione per risposte random
+      risposteRandom: function () {
+        let rand = Math.floor(Math.random() * this.answers.length);
+        let randValue = this.answers[rand];
+        return randValue;
+      },
+      // /funzione per risposte random
+      
       // funzione per scrivere, aggiungere un messaggio e riceverne risposta
       addMessage: function () {
         let object =  this.contacts[this.counter].messages ;
@@ -159,7 +186,7 @@ const app = new Vue(
           });          
           setTimeout(() => {
             object.push({
-              text: "Ok",
+              text: this.risposteRandom(),
               date: data,
               status: "received"
             })
