@@ -20,6 +20,7 @@
 // evitare che l'utente possa inviare un messaggio vuoto o composto solamente da spazi
 // A) cambiare icona in basso a destra(a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano.Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. B) inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
 // predisporre una lista di frasi e/o citazioni da utilizzare al posto della risposta "ok:" quando il pc risponde, anziché scrivere "ok", scegliere una frase random dalla lista e utilizzarla come testo del messaggio di risposta del pc
+// sotto al nome del contatto nella parte in alto a destra, cambiare l'indicazione dello stato: visualizzare il testo "sta scrivendo..." nel timeout in cui il pc risponde, poi mantenere la scritta "online" per un paio di secondi e infine visualizzare "ultimo accesso alle xx:yy" con l'orario corretto
 
 const app = new Vue(
   {
@@ -37,6 +38,7 @@ const app = new Vue(
           name: "Michele",
           avatar: "_1",
           visible: true,
+          lastAccess: null,
           messages: [
             {
               date: "10/01/2020 15:30:55",
@@ -59,6 +61,7 @@ const app = new Vue(
           name: "Fabio",
           avatar: "_2",
           visible: true,
+          lastAccess: null,
           messages: [
             {
               date: "20/03/2020 16:30:00",
@@ -81,6 +84,7 @@ const app = new Vue(
           name: "Samuele",
           avatar: "_3",
           visible: true,
+          lastAccess: null,
           messages: [
             {
               date: "28/03/2020 10:10:40",
@@ -103,6 +107,7 @@ const app = new Vue(
           name: "Luisa",
           avatar: "_4",
           visible: true,
+          lastAccess: null,
           messages: [
             {
               date: "10/01/2020 15:30:55",
@@ -134,8 +139,14 @@ const app = new Vue(
             'Si potrebbe fare!',
             'Ci vediamo domani allora!'
           ]
+        },
+        
+    // created per ultimo accesso di default
+    created() {
+      this.ultimoAccesso();
     },
-    
+    // /created per ultimo accesso di default
+
     methods: {
       // funzione per selezionare chat
       add: function (index) {
@@ -183,14 +194,28 @@ const app = new Vue(
             text: this.messageNew,
             date: data,
             status: "sent"
-          });          
-          setTimeout(() => {
-            object.push({
-              text: this.risposteRandom(),
-              date: data,
-              status: "received"
-            })
-          }, 1000);
+          });
+            // timer per cambiare lo stato da "online" a "sta scrivendo" a "ultimo accesso" nuovamente
+            setTimeout (() => {
+              this.contacts[this.counter].lastAccess = 'online';
+              setTimeout (() => {
+                this.contacts[this.counter].lastAccess = 'sta scrivendo...';
+                let newData = dayjs().format("DD/MM/YYYY HH:mm:ss");
+                setTimeout(() => {
+                  object.push({
+                    text: this.risposteRandom(),
+                    date: newData,
+                    status: "received",
+                  });
+                  this.contacts[this.counter].lastAccess = 'online';
+                  setTimeout(() => {
+                    //cambio ultimo accesso
+                    this.contacts[this.counter].lastAccess = `Ultimo accesso: ${object[object.length - 1].date}`;
+                  }, 1000);
+                }, 5000);
+              }, 3000);          
+            }, 3000); 
+            // /timer per cambiare lo stato da "online" a "sta scrivendo" a "ultimo accesso" nuovamente
         }
         this.messageNew = '';
       },
@@ -207,6 +232,16 @@ const app = new Vue(
         });
       },
       // /funzione ricerca chat
+
+      ultimoAccesso: function () {
+        this.contacts.forEach((contact) => {
+          let ultimoMessaggio = contact.messages.filter((message) => {
+            return message.status == "received";
+          });
+          let length = ultimoMessaggio.length - 1;
+          contact.lastAccess = `Ultimo accesso: ${ultimoMessaggio[length].date}`;
+        });
+      },
 
       // funzione per visualizzare e interagire col pannello opzioni
       showOptions: function (index) {
