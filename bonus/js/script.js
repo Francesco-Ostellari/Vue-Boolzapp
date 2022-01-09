@@ -21,18 +21,25 @@
 // A) cambiare icona in basso a destra(a fianco all'input per scrivere un nuovo messaggio) finché l'utente sta scrivendo: di default si visualizza l'icona del microfono, quando l'input non è vuoto si visualizza l'icona dell'aeroplano.Quando il messaggio è stato inviato e l'input si svuota, si torna a visualizzare il microfono. B) inviare quindi il messaggio anche cliccando sull'icona dell'aeroplano
 // predisporre una lista di frasi e/o citazioni da utilizzare al posto della risposta "ok:" quando il pc risponde, anziché scrivere "ok", scegliere una frase random dalla lista e utilizzarla come testo del messaggio di risposta del pc
 // sotto al nome del contatto nella parte in alto a destra, cambiare l'indicazione dello stato: visualizzare il testo "sta scrivendo..." nel timeout in cui il pc risponde, poi mantenere la scritta "online" per un paio di secondi e infine visualizzare "ultimo accesso alle xx:yy" con l'orario corretto
+// dare la possibilità all'utente di cancellare tutti i messaggi di un contatto o di cancellare l'intera chat con tutti i suoi dati: cliccando sull'icona con i tre pallini in alto a destra, si apre un dropdown menu in cui sono presenti le voci "Elimina messaggi" ed "Elimina chat"; cliccando su di essi si cancellano rispettivamente tutti i messaggi di quel contatto (quindi rimane la conversazione vuota) oppure l'intera chat comprensiva di tutti i dati del contatto oltre che tutti i suoi messaggi (quindi sparisce il contatto anche dalla lista di sinistra)
+// visualizzare un messaggio di benvenuto che invita l'utente a selezionare un contatto dalla lista per visualizzare i suoi messaggi, anziché attivare di default la prima conversazione
 
 const app = new Vue(
   {
     el: '#app',
     data: {
-      counter: 0,
+      counter: null,
       messageNew: '',
       ricercaChat: '',
       menu: {
         index: false,
         show: false
       },
+      opzioniMenu: {
+        contatore: false,
+        visibilita: false
+      },
+      option: false,
       contacts: [
         {
           name: "Michele",
@@ -156,23 +163,27 @@ const app = new Vue(
 
       // funzione data messaggio
       getDate: function (index) {
-        //recupero la data dell'ultimo messaggio
-        let lastMessage = this.contacts[index].messages.length - 1;
-        let messageDate = this.contacts[index].messages[lastMessage].date;
-        return messageDate;
+        if (this.contacts[index].messages.length > 0) {
+          //recupero la data dell'ultimo messaggio
+          let lastMessage = this.contacts[index].messages.length - 1;
+          let messageDate = this.contacts[index].messages[lastMessage].date;
+          return messageDate;
+        }
       },
       // /fuznione data messaggio
 
       // funzione testo messaggio
       getMessage: function (index) {
-        //recupero il testo dell'ultimo messaggio
-        let lastMessage = this.contacts[index].messages.length - 1;
-        let messageText = this.contacts[index].messages[lastMessage].text;
-        //visualizzo in pagina i puntini se il messaggio è lungo
-        if (messageText.length > 20) {
-          messageText = messageText + ' ...';
+        if (this.contacts[index].messages.length > 0) {
+          //recupero il testo dell'ultimo messaggio
+          let lastMessage = this.contacts[index].messages.length - 1;
+          let messageText = this.contacts[index].messages[lastMessage].text;
+          //visualizzo in pagina i puntini se il messaggio è lungo
+          if (messageText.length > 20) {
+            messageText = messageText + ' ...';
+          }
+          return messageText;
         }
-        return messageText;
       },
       // /funzione testo messaggio
 
@@ -252,6 +263,15 @@ const app = new Vue(
         this.menu.show = !this.menu.show;
         this.menu.index = index;
       },
+
+      menuOptions: function (contatore) {
+        if (this.opzioniMenu.contatore !== contatore && this.opzioniMenu.contatore !== false) {
+          this.opzioniMenu.visibilita = false;
+          this.opzioniMenu.contatore = false;
+        }
+        this.opzioniMenu.visibilita = !this.opzioniMenu.visibilita;
+        this.opzioniMenu.contatore = contatore;
+      },
       // /funzione per visualizzare e interagire col pannello opzioni
       
       // funzione per rimuovere un messaggio
@@ -260,8 +280,17 @@ const app = new Vue(
         object.splice(index, 1);
         this.menu.show = false;
         this.menu.index = false;
-      }
+      },
       // /funzione per rimuovere un messaggio
+      removeMessages: function (counter) {
+        this.option = false;
+        this.contacts[counter].messages = [];
+      },
+      removeChat: function () {
+        this.option = false;
+        this.contacts[this.counter].visible = false;
+        this.counter = null;
+      },
     }
   }
 );

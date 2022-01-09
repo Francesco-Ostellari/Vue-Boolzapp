@@ -81,7 +81,7 @@
     <!-- /colonna sinistra -->
 
     <!-- colonna destra -->
-    <div class="col-right">
+    <div class="col-right" v-if="counter != null">
       <!-- header destro -->
       <div class="header-top-right flex">
         <!-- container immagine -->
@@ -100,7 +100,11 @@
         <div class="container-icons">
           <i class="fas fa-search icons"></i>
           <i class="fas fa-paperclip icons"></i>
-          <i class="fas fa-ellipsis-v icons"></i>
+          <i class="fas fa-ellipsis-v icons" @click="menuOptions(counter)"></i>
+          <div class="dropdown-menu" v-if="opzioniMenu.visibilita == true && opzioniMenu.contatore == counter">
+            <div class="opzioni" @click="removeMessages(counter)">Elimina messaggi</div>
+            <div class="opzioni" @click="removeChat()">Elimina chat</div>
+          </div>
         </div>
         <!-- /container icone -->
       </div>
@@ -141,6 +145,12 @@
       <!-- /barra inferiore -->
     </div>
     <!-- /main -->
+    <div v-else class="welcome col-right flex">
+      <div class="welcome-text flex">
+        <h2>Benvenuto!</h2>
+        <span>Per usare l'app, seleziona una conversazione e inizia a messaggiare!</span>
+      </div>
+    </div>
   </div>
   <script src="js/script.js"></script>
 </body>
